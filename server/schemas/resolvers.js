@@ -7,9 +7,7 @@ const resolvers = {
             if (context.user) {
                 const userData = await User.findOne({})
                     .select('-__v -password')
-                    .populate('thoughts')
-                    .populate('friends')
-
+                    .populate('savedBooks')
                 return userData
             }
             throw new AuthenticationError('Not logged in')
@@ -25,15 +23,13 @@ const resolvers = {
         users: async () => {
             return User.find()
                 .select('-__v -password')
-                .populate('friends')
-                .populate('thoughts');
+                .populate('savedBooks')
         },
         // get a user by username
         user: async (parent, { username }) => {
             return User.findOne({ username })
                 .select('-__v -password')
-                .populate('friends')
-                .populate('thoughts');
+                .populate('savedBooks')
         },
     }
 }
