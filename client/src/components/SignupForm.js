@@ -8,7 +8,7 @@ import Auth from '../utils/auth';
 const SignupForm = () => {
   // set initial form state
   const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
-  
+  const [validated] = useState(false)
   const [addUser, { error }] = useMutation(ADD_USER);
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
@@ -29,7 +29,7 @@ const SignupForm = () => {
     }
 
     try {
-      const response = await addUser({variables: {...formState}});
+      const response = await addUser({variables: {...userFormData}});
 
       if (!response.ok) {
         throw new Error('something went wrong!');
