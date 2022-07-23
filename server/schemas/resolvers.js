@@ -12,7 +12,7 @@ const resolvers = {
             }
             throw new AuthenticationError('Not logged in')
         },
-        books: async (parent, { username }) => {
+        savedBooks: async (parent, { username }) => {
             const params = username ? { username } : {}
             return Book.find(params).sort({ createdAt: -1 })
         },
@@ -31,5 +31,17 @@ const resolvers = {
                 .select('-__v -password')
                 .populate('savedBooks')
         },
+    },
+    Mutation: {
+        addUser: async (parent, args) => {
+            console.log(args)
+            const user = await User.create(args);
+            const token = signToken(user)
+            console.log('Testing')
+
+            return { token, user };
+        },
     }
 }
+
+module.exports = resolvers
