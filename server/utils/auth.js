@@ -20,9 +20,9 @@ module.exports = {
     }
 
     if (!token) {
-      console.log("hello")
-      return req;
-      // return res.status(400).json({ message: 'You have no token!' });
+      console.log("No Token")
+      
+      return res.status(400).json({ message: 'You have no token!' });
     }
 
     // verify token and get user data out of it
