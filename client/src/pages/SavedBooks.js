@@ -16,7 +16,6 @@ import { REMOVE_BOOK } from "../utils/mutations";
 const SavedBooks = () => {
   // use this to determine if `useEffect()` hook needs to run again
 
-  
   const { data, loading } = useQuery(GET_ME);
   const userData = data?.me || [];
   const [removeBook, {error}] = useMutation(REMOVE_BOOK);
