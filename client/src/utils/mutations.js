@@ -31,7 +31,7 @@ export const SAVE_BOOK = gql`
       username
       _id
       bookCount
-      books {
+      savedBooks {
         bookId
         authors
         description
